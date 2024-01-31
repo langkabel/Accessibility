@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AccessibilityGame</title>
+
+    <link rel="stylesheet" type="text/css" href="CSS/handicaps.css">
+    <link rel="stylesheet" type="text/css" href="CSS/style.css">
+</head>
+<body>
+    <script src="handicaps.js"></script>
+    <script src="timer.js"></script>
+    <div id="start-overlay" class="overlay">
+        <h1>
+            AccessibilityGame
+        </h1>
+        <p>
+            Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...
+        </p>
+        <button id="start-button" type="button" onclick="startGame(startOverlayDom)">
+            Start
+        </button>
+    </div>
+    <div id="game-over-overlay" class="not-displayed overlay">
+        <h1>
+            Game Over
+        </h1>
+        <p>
+            Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...
+        </p>
+        <button id="start-button" type="button" onclick="startGame(gameOverOverlayDom)">
+            Start
+        </button>
+    </div>
+    <div id="handicap-overlay" class="not-displayed overlay">
+        <h1>
+            Handicap Overlay
+        </h1>
+        <button id="start-button" type="button" onclick="startGame(handicapOverlayDom)">
+            Start
+        </button>
+    </div>
+    <div id="upgrade-overlay" class="not-displayed overlay">
+        <h1>
+            Upgrade Overlay
+        </h1>
+        <button id="start-button" type="button" onclick="startGame(upgradeOverlayDom)">
+            Start
+        </button>
+    </div>
+    
+    <div id="countdown-overlay" class="not-displayed overlay"><h1><span id="countdown"></span></h1></div>
+    <div><h3>Command:<span id="command">0</span></h3></div>
+    <div><p>Next Handicap in: <span id="handicapTimer">0</span>s</p></div>
+    <div><p>Time: <span id="commandTimer">0</span>s</p></div>
+    
+    <div id="button-container">
+        <button id="bopIt">Bop It</button>
+        <button id="twistIt">Twist It</button>
+        <button id="pullIt">Pull It</button>
+    </div>
+    <div><p>Score: <span id="score">0</span></p></div>
+    <div><p>Highscore: <span id="highscore">0</span></p></div>
+    <script src="main.js"></script>
+</body>
+</html>

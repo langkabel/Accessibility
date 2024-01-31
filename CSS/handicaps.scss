@@ -1,0 +1,9 @@
+//circle cursor
+#cursor-circle {
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    background-color: black;
+    border-radius: 50%;
+    pointer-events: none; /* Make sure the circle doesn't interfere with mouse events */
+}
