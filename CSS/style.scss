@@ -1,3 +1,19 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
 .not-displayed {
     display: none;
 }
@@ -9,17 +25,92 @@
     height: 100%;
 
     background-color: white;
+    &:not(.not-displayed) {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .overlay-content-container {
+        width: 50%;
+        height: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        flex-direction: column;
+    }
 }
+
+#top-container {
+    width: 100%;
+    height: 30%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 64px;
+    #handicap-timer-container {
+        width: 100%;
+        height: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        #progressbar {
+            height: 100%;
+            
+            background-color: black;
+            transition: width 1s linear;
+            -webkit-transition: width 1s linear;
+            -moz-transition: width 1s linear;
+            -ms-transition: width 1s linear;
+            -o-transition: width 1s linear;
+        }
+    }
+    h3 {
+        
+    }
+
+}
+
+
 
 #button-container {
     width: 100%;
     height: 100%;
 
     display: flex;
+    
+    align-items: center;
+    justify-content: space-evenly;
 
     button {
-        width: 100%;
-        height: 100px;
+
     }
 }
 
+#score-container {
+    width: 100%;
+    height: 30%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 64px;
+    #upgrade-progress-container {
+        width: 100%;
+        height: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        #upgradebar {
+            height: 100%;
+            width: 0%;
+            
+            background-color: black;
+            transition: width 1s linear;
+            -webkit-transition: width 1s linear;
+            -moz-transition: width 1s linear;
+            -ms-transition: width 1s linear;
+            -o-transition: width 1s linear;
+        }
+    }
+}

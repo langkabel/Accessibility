@@ -1,8 +1,9 @@
 class Timer {
     constructor () {
-        this.isRunning = false;
-        this.startTime = 0;
-        this.overallTime = 0;
+        this.isRunning = false
+        this.startTime = 0
+        this.overallTime = 0
+        this.remainingTime = 0       
     }
   
     _getTimeElapsedSinceLastStart () {
@@ -47,5 +48,40 @@ class Timer {
         }
         return this.overallTime;
     }
+
+    startCountdown(timeInSeconds,onUpdate, onFinish) {
+        this.remainingTime = timeInSeconds
+        this.start()
+        setInterval(() => {            
+            this.remainingTime = timeInSeconds - Math.round(this._getTimeElapsedSinceLastStart() / 1000)        
+            if (this.remainingTime <= 0) {
+                this.stop()
+                this.reset()
+                if (typeof onFinish === "function") {
+                    onFinish       
+                }
+            } else {
+                console.log(this.remainingTime)
+                if (typeof onUpdate === "function") {
+                    onUpdate       
+                }
+            }
+        }, 500)
+    }
 }
   
+function startCountdownAndExecute(timer, excecute) {
+    timer.start()
+    setInterval(() => {
+        let timeInSeconds = Math.round(timer.getTime() / 1000);
+        let remainingTime = 3 - timeInSeconds
+        if (remainingTime <= 0 ) {
+            excecute
+            
+            startHandicapInterval()
+            startCommandCountdownTimer()
+        } else {
+            countdownDom.innerText = remainingTime
+        }    
+    }, 100)
+}

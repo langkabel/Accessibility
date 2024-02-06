@@ -1,9 +1,22 @@
 //circle cursor
-#cursor-circle {
+#macular-degeneration {
     position: absolute;
-    width: 150px;
-    height: 150px;
-    background-color: black;
+    z-index: 100;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(0,0,0,1) 0%, rgba(18,18,18,1) 11%,rgba(0,0,0,.1) 70%, rgba(0,0,0,0) 99%);   
+    backdrop-filter: blur(5px);
     border-radius: 50%;
-    pointer-events: none; /* Make sure the circle doesn't interfere with mouse events */
+    pointer-events: none; 
+}
+
+#blurry-vision {
+    position: absolute;
+    z-index: 110;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    backdrop-filter: blur(2px);
+    pointer-events: none;
 }

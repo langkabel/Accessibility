@@ -9,59 +9,81 @@
     <link rel="stylesheet" type="text/css" href="CSS/style.css">
 </head>
 <body>
-    <script src="handicaps.js"></script>
+    <div id="start-screen" class="overlay">
+        <div class="overlay-content-container">
+            <h1>
+                AccessibilityGame
+            </h1>
+            <p>
+                Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...
+            </p>
+            <button id="start-button" type="button">Start</button>
+        </div>
+    </div>
+    <div id="game-over-screen" class="not-displayed overlay">
+        <div class="overlay-content-container">
+            <h1>Game Over</h1>
+            <p>
+                Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...
+            </p>
+            <button id="start-button" type="button">
+                Start
+            </button>
+        </div>
+    </div>
+    <div id="handicap-screen" class="not-displayed overlay">
+        <div class="overlay-content-container">
+            <h3><span id="handicap-name">text</span></h3>
+            <p><span id="handicap-description">text</span></p>
+            <button id="start-button" type="button">
+                Start
+            </button>
+        </div>
+    </div>
+    <div id="upgrade-screen" class="not-displayed overlay">
+        <div class="overlay-content-container">
+            <h1>
+                Upgrade Overlay
+            </h1>
+            <button id="start-button" type="button">
+                Start
+            </button>
+        </div>
+    </div>
+    <div id="countdown-screen" class="not-displayed overlay">
+        <div class="overlay-content-container">
+            <h0>
+                <span id="countdown"></span>
+            </h0>
+        </div>
+    </div>
+    <div id="play-screen" class="not-displayed overlay">
+        <div id="top-container">
+            <div id="handicap-timer-container">
+                <div id="progressbar"></div>
+            </div>
+            <h3><span id="command">0</span></h3>
+        </div>  
+        <div id="button-container">
+            <button id="bopIt">Bop It</button>
+            <button id="twistIt">Twist It</button>
+            <button id="pullIt">Pull It</button>
+        </div>
+        <div id="score-container">
+            <p>Score: <span id="score">0</span></p>
+            <div id="upgrade-progress-container">
+                <div id="upgradebar"></div>
+            </div>
+        </div>
+    </div>
     <script src="timer.js"></script>
-    <div id="start-overlay" class="overlay">
-        <h1>
-            AccessibilityGame
-        </h1>
-        <p>
-            Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...
-        </p>
-        <button id="start-button" type="button" onclick="startGame(startOverlayDom)">
-            Start
-        </button>
-    </div>
-    <div id="game-over-overlay" class="not-displayed overlay">
-        <h1>
-            Game Over
-        </h1>
-        <p>
-            Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...
-        </p>
-        <button id="start-button" type="button" onclick="startGame(gameOverOverlayDom)">
-            Start
-        </button>
-    </div>
-    <div id="handicap-overlay" class="not-displayed overlay">
-        <h1>
-            Handicap Overlay
-        </h1>
-        <button id="start-button" type="button" onclick="startGame(handicapOverlayDom)">
-            Start
-        </button>
-    </div>
-    <div id="upgrade-overlay" class="not-displayed overlay">
-        <h1>
-            Upgrade Overlay
-        </h1>
-        <button id="start-button" type="button" onclick="startGame(upgradeOverlayDom)">
-            Start
-        </button>
-    </div>
     
-    <div id="countdown-overlay" class="not-displayed overlay"><h1><span id="countdown"></span></h1></div>
-    <div><h3>Command:<span id="command">0</span></h3></div>
-    <div><p>Next Handicap in: <span id="handicapTimer">0</span>s</p></div>
-    <div><p>Time: <span id="commandTimer">0</span>s</p></div>
+    <script src="gamestates.js"></script>
+    <script src="screens.js"></script>
+    <script src="interactions.js"></script>
+    <script src="texttospeach.js"></script>
+    <script src="handicaps.js"></script>
     
-    <div id="button-container">
-        <button id="bopIt">Bop It</button>
-        <button id="twistIt">Twist It</button>
-        <button id="pullIt">Pull It</button>
-    </div>
-    <div><p>Score: <span id="score">0</span></p></div>
-    <div><p>Highscore: <span id="highscore">0</span></p></div>
     <script src="main.js"></script>
 </body>
 </html>
