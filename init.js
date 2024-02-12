@@ -1,13 +1,18 @@
 // variables to balance game
 let handicapInterval = 6
 let commandCountdown = 7
-let upgradeThreshold = 7
+let upgradeThreshold = 0
 let numberOfInteractionElementsAtBeginning = 3
 
 // variables to define 
 let score = 0
 let highscore = 0
 
+let commandNumber = 0
+let commandInteractionID = 0
+let commandToDisplay = ""
+
+let implementedInteractionElements = []
 //
 
 // DOM buttons
@@ -44,41 +49,30 @@ let playScreenDOM = new Screen("play-screen")
 let handicapScreenDOM = new Screen("handicap-screen")
 let upgradeScreenDOM = new Screen("upgrade-screen")
 
-
 // text Definition
-class DynamicText {
-    constructor(id) {
-        this.dynamicText = document.getElementById(`${id}`)
-        
-    }
-
-    update(change) {
-        this.dynamicText.innerText = `${change}`
-        this.dynamicText.textContent = `${change}`
-    }
-}
-
-let countdownDOM = new DynamicText("countdown")
-let scoreDOM = new DynamicText("score")
-let highscoreDOM = new DynamicText("highscore")
+let scoreDOM = document.getElementById(`score`)
+let commandDOM = document.getElementById(`command`)
+let countdownDOM = document.getElementById(`countdown`)
+let highscoreDOM = document.getElementById(`highscore`)
 
 // helper functions
-score++;
+function updateScore(onUpgrade) {
+    score++;
+    scoreDOM.innerText = score
 
-let dynamicText = document.getElementById(`score`)
-dynamicText.innerText = score
+    // let progress = (100 / (upgradeThreshold - 1)) * (score % upgradeThreshold)
+    // upgradebarDom.style.width = progress + '%'
 
-// let progress = (100 / (upgradeThreshold - 1)) * (score % upgradeThreshold)
-// upgradebarDom.style.width = progress + '%'
-
-if (score > highscore) {
-    highscore = score
-} 
-if (score % upgradeThreshold === 0) {
-    game.changeState(new UpgradeState())   
+    if (score > highscore) {
+        highscore = score
+        highscoreDOM.innerText = highscore
+    } 
+    if (score % upgradeThreshold === 0) {
+        onUpgrade()   
+    }
 }
-
 
 function getLastObjectOfArray(array) {
     return array[array.length - 1]
 }
+

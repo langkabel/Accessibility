@@ -29,6 +29,7 @@ class Timer {
         }
         this.isRunning = false; 
         this.overallTime = this.overallTime + this._getTimeElapsedSinceLastStart();
+        clearInterval(this.intervalFunction)
     }
   
     reset () {
