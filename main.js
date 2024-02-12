@@ -1,13 +1,20 @@
+//Init Game
 let game = new Game()
 game.changeState(new StartState)
 
+//Init States
+let startState = new StartState()
+let countdownState = new CountdownState()
+let playstate = new PlayState()
+let upgradeState = new UpgradeState()
+let handicapState = new HandicapState()
+let gameOverState = new GameOverState()
 
-let countdownText = new DynamicText("countdown")
 
-let testButton = new Button("start-button", game.changeState(new CountdownState))
-testButton.activate()
-let countdown = new Timer()
 
-countdown.startCountdown(3, function() {
-    console.log(test)
-})
+
+
+
+
+
+

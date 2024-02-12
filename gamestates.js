@@ -1,4 +1,4 @@
-// gamesstates: start, end, pause, resume, 
+// game class definition to handle states and transitions
 class Game {
     constructor () {
         this.currentState = null
@@ -19,6 +19,7 @@ class Game {
     }
 }
 
+// basic gamestate
 class GameState {
     constructor (state) {
         this.state = state     
@@ -29,9 +30,16 @@ class GameState {
     exit() {}
 }
 
+// definition on gamestates and their specific function
+// specific gamestates alsway open ond close their overlay on enter and exit
+// buttons get declared on enter and deleted on exit to prevent bugs and cheating
 class StartState extends GameState {
     enter() {
-        startScreen.open()
+        startScreenDOM.open()
+        implementStartingInteractionElements()
+
+        let startButtonDOM = document.getElementById("start-button")
+        startButtonDOM.onclick = function() {game.changeState(new CountdownState)}
     }
 
     update() {
@@ -39,7 +47,9 @@ class StartState extends GameState {
     }
 
     exit() {
-        startScreen.close()
+        
+        startScreenDOM.close()
+
     }
 }
 
@@ -57,9 +67,16 @@ class SettingsState extends GameState {
     }
 }
 
+//Countdown State
+//Helper Functions
+
+
+
 class CountdownState extends GameState {
     enter() {
-        countdownScreen.open()    
+        countdownScreenDOM.open()
+        countdownTimer.startCountdown(3, () => countdownDOM.update(countdownTimer.remainingTime), () => game.changeState(new PlayState())) 
+           
     }
 
     update() {
@@ -67,28 +84,52 @@ class CountdownState extends GameState {
     }
 
     exit() {
-        countdownScreen.close()
+        countdownScreenDOM.close()
     }
 }
+
+//Play State
+//Helper Functions
+
+
 
 class PlayState extends GameState {
     enter() {
-        playScreen.open()
+        playScreenDOM.open()
+        handicapTimer.startCountdown(handicapInterval, () => {}, () => game.changeState(new HandicapState))
+        commandTimer.startCountdown(commandCountdown, () => {}, () => game.changeState(new GameOverState))
+        
     }
 
-    update() {
-        //logic when updated
+    update() {    
+
     }
 
     exit() {
-        playScreen.close()
+        playScreenDOM.close()
+
+        commandTimer.stop()
+        commandTimer.reset()
+
+        handicapTimer.stop()
+        handicapTimer.reset()
     }
 }
-
+ 
 class HandicapState extends GameState {
     enter() {
-        handicapScreen.open()
-        console.log("Handicap Screen")
+        // open screen
+        handicapScreenDOM.open()
+
+        // stop and reset Timers
+        handicapTimer.stop()
+        handicapTimer.reset()
+        
+        commandTimer.stop()
+        commandTimer.reset()
+
+        let continueFromHandicapButtonDOM = document.getElementById("handicap-continue-button")
+        continueFromHandicapButtonDOM.onclick = function() {game.changeState(new CountdownState)}
     }
 
     update() {
@@ -96,14 +137,21 @@ class HandicapState extends GameState {
     }
 
     exit() {
-        handicapScreen.close()
+        handicapScreenDOM.close()
     }
 }
 
 class UpgradeState extends GameState {
     enter() {
-        upgradeScreen.open()
+        upgradeScreenDOM.open()
         console.log("Upgrade Screen")
+
+        handicapTimer.stop()
+        handicapTimer.reset()
+        
+        commandTimer.stop()
+        commandTimer.reset()
+        
     }
 
     update() {
@@ -111,13 +159,16 @@ class UpgradeState extends GameState {
     }
 
     exit() {
-        upgradeScreen.close()
+        upgradeScreenDOM.close()
     }
 }
 
 class GameOverState extends GameState {
     enter() {
-        
+        gameOverScreenDOM.open()
+
+        let restartButtonDOM = document.getElementById("restart-button")
+        restartButtonDOM.onclick = function() {game.changeState(new CountdownState)}
     }
 
     update() {
@@ -125,7 +176,7 @@ class GameOverState extends GameState {
     }
 
     exit() {
-        
+        gameOverScreenDOM.close()
     }
 }
 

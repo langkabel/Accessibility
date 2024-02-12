@@ -1,3 +1,5 @@
+// timer class definition
+
 class Timer {
     constructor () {
         this.isRunning = false
@@ -51,37 +53,35 @@ class Timer {
 
     startCountdown(timeInSeconds,onUpdate, onFinish) {
         this.remainingTime = timeInSeconds
+        this.reset()
         this.start()
-        setInterval(() => {            
+        this.intervalFunction = setInterval(() => {            
             this.remainingTime = timeInSeconds - Math.round(this._getTimeElapsedSinceLastStart() / 1000)        
             if (this.remainingTime <= 0) {
                 this.stop()
-                this.reset()
+                this.reset() 
                 if (typeof onFinish === "function") {
-                    onFinish       
+                    onFinish()      
+                } else {
+                    console.log({onFinish} + "is not a function.")
                 }
+                clearInterval(this.intervalFunction)
             } else {
                 console.log(this.remainingTime)
                 if (typeof onUpdate === "function") {
-                    onUpdate       
+                    onUpdate()
+                           
+                } else {
+                    console.log({onUpdate} + "is not a function.")
                 }
             }
-        }, 500)
+            
+        }, 1000)
     }
 }
-  
-function startCountdownAndExecute(timer, excecute) {
-    timer.start()
-    setInterval(() => {
-        let timeInSeconds = Math.round(timer.getTime() / 1000);
-        let remainingTime = 3 - timeInSeconds
-        if (remainingTime <= 0 ) {
-            excecute
-            
-            startHandicapInterval()
-            startCommandCountdownTimer()
-        } else {
-            countdownDom.innerText = remainingTime
-        }    
-    }, 100)
-}
+
+
+// timer init
+let countdownTimer = new Timer()
+let handicapTimer = new Timer()
+let commandTimer = new Timer()
