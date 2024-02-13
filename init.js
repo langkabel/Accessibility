@@ -1,7 +1,7 @@
 // variables to balance game
 let handicapInterval = 6
 let commandCountdown = 7
-let upgradeThreshold = 0
+let upgradeThreshold = 3
 let numberOfInteractionElementsAtBeginning = 3
 
 // variables to define 
@@ -44,7 +44,8 @@ class Screen {
     }
 }
 
-// Screen Definition
+//
+
 let startScreenDOM = new Screen("start-screen")
 let countdownScreenDOM = new Screen("countdown-screen")
 let gameOverScreenDOM = new Screen("game-over-screen")

@@ -69,16 +69,17 @@ class Button extends InteractionElement{
   constructor(id) {
     super()
     this.identification = id
-    this.numberOfPresses = 0
+    this.numberOfPresses = 0 // why is NAN??
+    this.targetForCommand = 0
     this.name = "Button"
 
     this.buttonDOM = document.createElement("button")
     this.buttonDOM.class = "interaction-button"
-    this.buttonDOM.innerHTML = "Button"
+    this.buttonDOM.innerHTML = `${this.identification}`
 
     this.buttonDOM.onclick = () => {
-      this.numberOfPresses ++
-      console.log(this.numberOfPresses)
+      // this.numberOfPresses ++ //NaN
+      // console.log(this.numberOfPresses)
       this.checkCommand()
     } 
   }
@@ -89,25 +90,26 @@ class Button extends InteractionElement{
   }
 
   generateCommand () {
-    commandInteractionID = this.identification
-    commandNumber = this.number
-
-    this.number = 2
-
+    commandInteractionID = this.identification 
     commandToDisplay = `Press ${this.name} ${this.identification} ${this.number} times!`
+    console.log(`${this.identification}`)
     
-    console.log(`${this.id}`)
   }
 
   checkCommand () {
-    if (this.identification = commandInteractionID) {
-      if (this.numberOfPresses = command.number) {
-        console.log("score added")
-        updateScore(new UpgradeState())
-        generateInteractionCommand()
-      } else {
-        console.log("press more!")
-      }
+    console.log("checked")
+    console.log(`${this.identification}`)
+    console.log(`${commandInteractionID}`)
+    if (this.identification === commandInteractionID) {
+      updateScore(() => {game.changeState(new UpgradeState())})
+      generateInteractionCommand()
+      // if (this.numberOfPresses === command.number) {
+      //   console.log("score added")
+      //   updateScore(new UpgradeState())
+        
+      // } else {
+      //   console.log("press more!")
+      // }
     } else {
       game.changeState(new GameOverState())
     }  
@@ -125,11 +127,7 @@ let slider1 = new Slider(4)
 
 let allInteractionElements = [button1, button2, button3]
 
-function generateInteractionCommand() {
-  let indexOfCommandToGenerate = Math.floor(Math.random() * implementedInteractionElements.length)
-  implementedInteractionElements[indexOfCommandToGenerate].generateCommand()
-  commandDOM.innerText = commandToDisplay
-}
+
 
 function implementRandomInteractionElement() {
   let indexOfElementToImplement = Math.floor(Math.random() * allInteractionElements.length)
@@ -151,4 +149,10 @@ function removeAllInteractionElements() {
   })
 }
 
+function generateInteractionCommand() {
+  // let indexOfCommandToGenerate = Math.floor(Math.random() * implementedInteractionElements.length)
+  let indexOfCommandToGenerate = Math.floor(Math.random() * implementedInteractionElements.length)
+  implementedInteractionElements[indexOfCommandToGenerate].generateCommand()
+  commandDOM.innerText = commandToDisplay
+}
 
