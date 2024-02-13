@@ -10,6 +10,7 @@ let upgradeState = new UpgradeState()
 let handicapState = new HandicapState()
 let gameOverState = new GameOverState()
 
+console.log(commandInteractionID)
 
 
 

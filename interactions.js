@@ -3,16 +3,15 @@
 
 
 class InteractionElement {
-  constructor (id) {
+  constructor () {
     this.interactionContainerDOM = document.createElement("div")
-    this.id = id
-    this.number
   }
 
   _appendInteractionContainer (interactionElement) {
     this.interactionContainerDOM.class = "interaction-container"
     this.interactionContainerDOM.appendChild(interactionElement)
     document.getElementById("button-container").appendChild(this.interactionContainerDOM)
+    
   }
 
   _generateRandomNumber(number) {
@@ -59,10 +58,7 @@ class Slider extends InteractionElement{
 
   implement() {
     this._appendInteractionContainer(this.sliderContainerDOM)
-
   }
-
-
 
   undoImplementation() {
     this.interactionContainerDOM.remove()
@@ -72,35 +68,39 @@ class Slider extends InteractionElement{
 class Button extends InteractionElement{
   constructor(id) {
     super()
-
+    this.identification = id
     this.numberOfPresses = 0
     this.name = "Button"
+
     this.buttonDOM = document.createElement("button")
     this.buttonDOM.class = "interaction-button"
-    this.buttonDOM.innerHTML = "Button" 
+    this.buttonDOM.innerHTML = "Button"
+
     this.buttonDOM.onclick = () => {
-      this.numberOfPresses+
-      console.log(`aaaaa${this.numberOfPresses}`)
-      
+      this.numberOfPresses ++
+      console.log(this.numberOfPresses)
       this.checkCommand()
     } 
   }
 
   implement() {
-    console.log("test")
+    console.log(this.identification)
     this._appendInteractionContainer(this.buttonDOM)
   }
 
   generateCommand () {
-    this.number = 2
+    commandInteractionID = this.identification
     commandNumber = this.number
-    commandToDisplay = `Press ${this.name} ${this.id} ${this.number} times!`
-    commandInteractionID = this.id
+
+    this.number = 2
+
+    commandToDisplay = `Press ${this.name} ${this.identification} ${this.number} times!`
+    
     console.log(`${this.id}`)
   }
 
   checkCommand () {
-    if (this.id = command.interactionId) {
+    if (this.identification = commandInteractionID) {
       if (this.numberOfPresses = command.number) {
         console.log("score added")
         updateScore(new UpgradeState())
@@ -118,9 +118,9 @@ class Button extends InteractionElement{
   }
 }
 
-let button1 = new Button("1")
-let button2 = new Button("2")
-let button3 = new Button("3")
+let button1 = new Button(1)
+let button2 = new Button(2)
+let button3 = new Button(3)
 let slider1 = new Slider(4)
 
 let allInteractionElements = [button1, button2, button3]

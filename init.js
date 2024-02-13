@@ -8,17 +8,19 @@ let numberOfInteractionElementsAtBeginning = 3
 let score = 0
 let highscore = 0
 
-let commandNumber = 0
+// variables for command checking
 let commandInteractionID = 0
+let commandNumber = 0
+
 let commandToDisplay = ""
 
-let implementedInteractionElements = []
 //
+let implementedInteractionElements = []
 
 // DOM buttons
 let continueFromUpgradeButtonDOM = document.getElementById("upgrade-continue-button")
 
-// Screen Definitions
+// Screen Class
 class Screen {
     constructor (id) {
         this.overlay = document.getElementById(`${id}`)
@@ -42,6 +44,7 @@ class Screen {
     }
 }
 
+// Screen Definition
 let startScreenDOM = new Screen("start-screen")
 let countdownScreenDOM = new Screen("countdown-screen")
 let gameOverScreenDOM = new Screen("game-over-screen")
