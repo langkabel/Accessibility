@@ -9,6 +9,7 @@
     <link rel="stylesheet" type="text/css" href="CSS/style.css">
 </head>
 <body>
+    <div id="handicap-container"></div>
     <div id="start-screen" class="overlay not-displayed">
         <div class="overlay-content-container">
             <h1>
@@ -17,7 +18,7 @@
             <p>
                 Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...
             </p>
-            <button id="start-button" type="button">Start</button>
+            <button id="start-button" class="button" type="button">Start</button>
         </div>
     </div>
     <div id="game-over-screen" class="not-displayed overlay">
@@ -26,10 +27,13 @@
             <p>
                 Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...
             </p>
-            <div id="highscore-container">
-                <p>Score: <span id="highscore">0</span></p>
+            <div id="score-container">
+                <p>Score: <span id="end-score">0</span></p>
             </div>
-            <button id="restart-button" type="button">
+            <div id="highscore-container">
+                <p>Highscore: <span id="highscore">0</span></p>
+            </div>
+            <button id="restart-button" class="button" type="button">
                 Start
             </button>
 
@@ -39,7 +43,7 @@
         <div class="overlay-content-container">
             <h3><span id="handicap-name">text</span></h3>
             <p><span id="handicap-description">text</span></p>
-            <button id="handicap-continue-button" type="button">
+            <button id="handicap-continue-button" class="button" type="button">
                 Start
             </button>
         </div>
@@ -49,7 +53,7 @@
             <h1>
                 Upgrade Overlay
             </h1>
-            <button id="upgrade-continue-button" type="button">
+            <button id="upgrade-continue-button" class="button" type="button">
                 Start
             </button>
         </div>

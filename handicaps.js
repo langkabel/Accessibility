@@ -1,8 +1,4 @@
 //function to trigger wich implement handicaps
-let handicapNameDom = document.getElementById("handicap-name")
-let handicapDescriptionDom = document.getElementById("handicap-description")
-
-let implementedHandicaps = []
 
 // function integrateMilacularDegeneration() {
 //     document.addEventListener('mousemove', function(event) {
@@ -11,13 +7,14 @@ let implementedHandicaps = []
 //     })
 // }
 
+//id, name, description, functionality
+
 class Handicap {
-    constructor(id, name, description, implementFunctionality) {
+    constructor(object) {
         this.handicapDOM = document.createElement("div")
-        this.handicapDOM.id = `${id}`
-        this.name = name
-        this.description = description
-        this.implementationRequirement = implementFunctionality    
+        this.name = object.name
+        this.description = object.description
+        this.implementationRequirement = object.functionality    
     }
     
     _appendHandicapContainer () {
@@ -26,11 +23,12 @@ class Handicap {
 
     implement() {  
         this._appendHandicapContainer()
-        if (typeof implementFunctionality === "function") {
-            this.implementFunctionality()
-        }
+        this.implementationRequirement(this.handicapDOM)
         implementedHandicaps.push(this)
-        console.log(this.name + "implemented")    
+        console.log(this.description)
+        handicapNameDOM.innerText = `${this.name}`
+        handicapDescriptionDOM.innerText = this.description
+        console.log(this.name + " implemented")    
     }
 
     undoImplementation() {
@@ -38,6 +36,31 @@ class Handicap {
         console.log(this.name + "removed") 
     }
 }
+
+// macular Degeneration
+const macularDegenerationObject = {
+    name:"Macular Degeneration",
+    description:"Macular degeneration, also known as age-related macular degeneration (AMD or ARMD), is a condition that can result in blurred or absent central vision. In the early stages, symptoms may not be noticeable, but over time, individuals may experience a gradual decline in vision in one or both eyes. While it doesn't lead to total blindness, the loss of central vision can make daily activities like recognizing faces, driving, and reading challenging",
+    functionality:
+        (containerObject) => {
+            document.addEventListener('mousemove', (event) => {
+            containerObject.style.left = event.pageX - containerObject.clientWidth / 2 + 'px'
+            containerObject.style.top = event.pageY - containerObject.clientHeight / 2 + 'px'
+        })
+    }
+}
+
+let macularDegeneration = new Handicap(macularDegenerationObject)
+
+const blurryVisionObject = {
+    name:"Blurry Vision",
+    description:"Blurred vision is a prevalent ocular symptom characterized by a sudden or gradual loss of clarity or sharpness of vision, accompanied by difficulty in perceiving fine details. It may manifest in one eye (unilateral) or both eyes (bilateral).",
+    functionality: () => {}   
+}
+
+let blurryVision = new Handicap(blurryVisionObject)
+
+arrayOfAllHandicaps = [macularDegeneration, blurryVision]
 
 
 // let arrayOfAllHandicaps = [
@@ -84,8 +107,6 @@ function implementRandomHandicap() {
         let randomIndexOfHandicapObject = Math.floor(Math.random() * arrayOfAllHandicaps.length) 
         implementedHandicaps.push(arrayOfAllHandicaps[randomIndexOfHandicapObject])    
         arrayOfAllHandicaps.splice(randomIndexOfHandicapObject, 1) 
-        handicapNameDom.innerText = getLastObjectOfArray(implementedHandicaps).name
-        handicapDescriptionDom.innerText = getLastObjectOfArray(implementedHandicaps).description
         return getLastObjectOfArray(implementedHandicaps).implement()
     } else {
         // Function to trigger when all Handicaps have been used
@@ -96,7 +117,9 @@ function implementRandomHandicap() {
 
 function removeAllHandicaps() {
     implementedHandicaps.forEach((handicap) => {
-        handicap.remove()
+        handicap.undoImplementation()
         arrayOfAllHandicaps.push(handicap)
     })
 }
+implementRandomHandicap()
+implementRandomHandicap()

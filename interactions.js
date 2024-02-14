@@ -69,16 +69,17 @@ class Button extends InteractionElement{
   constructor(id) {
     super()
     this.identification = id
-    this.numberOfPresses = 0 // why is NAN??
-    this.targetForCommand = 0
+    this.numberOfPresses = 0 
+    
     this.name = "Button"
 
     this.buttonDOM = document.createElement("button")
-    this.buttonDOM.class = "interaction-button"
+    this.buttonDOM.class = "button"
     this.buttonDOM.innerHTML = `${this.identification}`
 
     this.buttonDOM.onclick = () => {
-      // this.numberOfPresses ++ //NaN
+      this.numberOfPresses = this.numberOfPresses + 1
+      commandTimer.reset()
       // console.log(this.numberOfPresses)
       this.checkCommand()
     } 
@@ -90,23 +91,27 @@ class Button extends InteractionElement{
   }
 
   generateCommand () {
+    // this.targetForCommand = 2
     commandInteractionID = this.identification 
-    commandToDisplay = `Press ${this.name} ${this.identification} ${this.number} times!`
+    commandToDisplay = `Press ${this.name} ${this.identification}.`
     console.log(`${this.identification}`)
     
   }
 
   checkCommand () {
-    console.log("checked")
+    
     console.log(`${this.identification}`)
     console.log(`${commandInteractionID}`)
     if (this.identification === commandInteractionID) {
       updateScore(() => {game.changeState(new UpgradeState())})
-      generateInteractionCommand()
-      // if (this.numberOfPresses === command.number) {
+      console.log("checked")
+      console.log("checked")
+      console.log("checked")
+
+      // if (this.numberOfPresses === this.targetForCommand) {
       //   console.log("score added")
-      //   updateScore(new UpgradeState())
         
+      //   generateInteractionCommand()
       // } else {
       //   console.log("press more!")
       // }
@@ -116,6 +121,8 @@ class Button extends InteractionElement{
   }  
 
   undoImplementation() {
+    // this.targetForCommand = 0
+    // this.numberOfPresses = 0
     this.interactionContainerDOM.remove()
   }
 }
@@ -125,7 +132,7 @@ let button2 = new Button(2)
 let button3 = new Button(3)
 let slider1 = new Slider(4)
 
-let allInteractionElements = [button1, button2, button3]
+allInteractionElements = [button1, button2, button3]
 
 
 

@@ -47,9 +47,7 @@ class StartState extends GameState {
     }
 
     exit() {
-        
         startScreenDOM.close()
-
     }
 }
 
@@ -76,7 +74,7 @@ class CountdownState extends GameState {
     enter() {
         countdownScreenDOM.open()
         countdownTimer.startCountdown(3, () => countdownDOM.innerText = countdownTimer.remainingTime, () => game.changeState(new PlayState()))
-          
+        
     }
 
     update() {
@@ -96,6 +94,8 @@ class CountdownState extends GameState {
 class PlayState extends GameState {
     enter() {
         generateInteractionCommand()
+        endScoreDOM.innerText = score
+
         playScreenDOM.open()
         handicapTimer.startCountdown(handicapInterval, () => {}, () => game.changeState(new HandicapState))
         commandTimer.startCountdown(commandCountdown, () => {}, () => game.changeState(new GameOverState)) 
@@ -151,6 +151,9 @@ class UpgradeState extends GameState {
         
         commandTimer.stop()
         commandTimer.reset()
+
+        let continueFromUpgradeButtonDOM = document.getElementById("upgrade-continue-button")
+        continueFromUpgradeButtonDOM.onclick = function() {game.changeState(new CountdownState())}
         
     }
 
@@ -170,9 +173,6 @@ class GameOverState extends GameState {
         let restartButtonDOM = document.getElementById("restart-button")
         restartButtonDOM.onclick = function() {game.changeState(new CountdownState)}
 
-        score = 0
-        scoreDOM.innerText = score
-    
         handicapTimer.stop()
         handicapTimer.reset()
     
@@ -188,6 +188,9 @@ class GameOverState extends GameState {
 
     exit() {
         gameOverScreenDOM.close()
+
+        score = 0
+        scoreDOM.innerText = score
     }
 }
 

@@ -1,6 +1,6 @@
 // variables to balance game
-let handicapInterval = 6
-let commandCountdown = 7
+let handicapInterval = 1
+let commandCountdown = 3
 let upgradeThreshold = 3
 let numberOfInteractionElementsAtBeginning = 3
 
@@ -11,11 +11,13 @@ let highscore = 0
 // variables for command checking
 let commandInteractionID = 0
 let commandNumber = 0
-
 let commandToDisplay = ""
 
-//
+// Arrays of implementation
+let allInteractionElements = []
 let implementedInteractionElements = []
+let arrayOfAllHandicaps = []
+let implementedHandicaps = []
 
 // DOM buttons
 let continueFromUpgradeButtonDOM = document.getElementById("upgrade-continue-button")
@@ -55,17 +57,25 @@ let upgradeScreenDOM = new Screen("upgrade-screen")
 
 // text Definition
 let scoreDOM = document.getElementById(`score`)
+let endScoreDOM = document.getElementById(`end-score`)
 let commandDOM = document.getElementById(`command`)
 let countdownDOM = document.getElementById(`countdown`)
 let highscoreDOM = document.getElementById(`highscore`)
+let handicapNameDOM = document.getElementById("handicap-name")
+let handicapDescriptionDOM = document.getElementById("handicap-description")
+
+// progress bars
+let upgradebarDOM = document.getElementById("upgradebar")
+let handicapbarDOM = document.getElementById("upgradebar")
 
 // helper functions
 function updateScore(onUpgrade) {
-    score++;
+    score = score + 1;
+    console.log({score})
     scoreDOM.innerText = score
 
-    // let progress = (100 / (upgradeThreshold - 1)) * (score % upgradeThreshold)
-    // upgradebarDom.style.width = progress + '%'
+    let progress = (100 / (upgradeThreshold - 1)) * (score % upgradeThreshold)
+    upgradebarDOM.style.width = progress + '%'
 
     if (score > highscore) {
         highscore = score
