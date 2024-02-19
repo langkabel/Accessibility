@@ -1,8 +1,9 @@
 // variables to balance game
-let handicapInterval = 1
-let commandCountdown = 3
+let handicapInterval = 2
+let commandCountdown = 10
 let upgradeThreshold = 3
 let numberOfInteractionElementsAtBeginning = 3
+const numberOfUpgradesToChooseFrom = 3
 
 // variables to define 
 let score = 0
@@ -16,8 +17,12 @@ let commandToDisplay = ""
 // Arrays of implementation
 let allInteractionElements = []
 let implementedInteractionElements = []
+
 let arrayOfAllHandicaps = []
 let implementedHandicaps = []
+
+let upgradesToShow = []
+let implementedUpgrades = []
 
 // DOM buttons
 let continueFromUpgradeButtonDOM = document.getElementById("upgrade-continue-button")
@@ -89,4 +94,10 @@ function updateScore(onUpgrade) {
 function getLastObjectOfArray(array) {
     return array[array.length - 1]
 }
+
+function progressbarUpdate(timeInSeconds) {
+    let progress = (100 / (handicapInterval - 1)) * (timeInSeconds)
+    handicapbarDOM.style.width = progress + '%'
+}
+
 

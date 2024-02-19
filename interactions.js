@@ -82,6 +82,7 @@ class Button extends InteractionElement{
       commandTimer.reset()
       // console.log(this.numberOfPresses)
       this.checkCommand()
+      generateInteractionCommand()
     } 
   }
 
@@ -94,7 +95,7 @@ class Button extends InteractionElement{
     // this.targetForCommand = 2
     commandInteractionID = this.identification 
     commandToDisplay = `Press ${this.name} ${this.identification}.`
-    console.log(`${this.identification}`)
+    console.log(`Command: ${this.identification}`)
     
   }
 
@@ -133,8 +134,6 @@ let button3 = new Button(3)
 let slider1 = new Slider(4)
 
 allInteractionElements = [button1, button2, button3]
-
-
 
 function implementRandomInteractionElement() {
   let indexOfElementToImplement = Math.floor(Math.random() * allInteractionElements.length)

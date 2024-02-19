@@ -94,11 +94,13 @@ class CountdownState extends GameState {
 class PlayState extends GameState {
     enter() {
         generateInteractionCommand()
+
         endScoreDOM.innerText = score
 
         playScreenDOM.open()
+
         handicapTimer.startCountdown(handicapInterval, () => {}, () => game.changeState(new HandicapState))
-        commandTimer.startCountdown(commandCountdown, () => {}, () => game.changeState(new GameOverState)) 
+        commandTimer.startCountdown(commandCountdown, () => {}, () => game.changeState(new GameOverState))
     }
 
     update() {    
@@ -118,6 +120,8 @@ class PlayState extends GameState {
  
 class HandicapState extends GameState {
     enter() {
+        implementRandomHandicap()
+
         // open screen
         handicapScreenDOM.open()
 
@@ -127,6 +131,8 @@ class HandicapState extends GameState {
         
         commandTimer.stop()
         commandTimer.reset()
+
+
 
         let continueFromHandicapButtonDOM = document.getElementById("handicap-continue-button")
         continueFromHandicapButtonDOM.onclick = function() {game.changeState(new CountdownState)}
@@ -152,8 +158,7 @@ class UpgradeState extends GameState {
         commandTimer.stop()
         commandTimer.reset()
 
-        let continueFromUpgradeButtonDOM = document.getElementById("upgrade-continue-button")
-        continueFromUpgradeButtonDOM.onclick = function() {game.changeState(new CountdownState())}
+        showRandomUpgrades()
         
     }
 
@@ -163,6 +168,7 @@ class UpgradeState extends GameState {
 
     exit() {
         upgradeScreenDOM.close()
+        removeUpgradesFromScreen()
     }
 }
 
@@ -187,6 +193,7 @@ class GameOverState extends GameState {
     }
 
     exit() {
+        removeAllHandicaps()
         gameOverScreenDOM.close()
 
         score = 0
@@ -194,7 +201,8 @@ class GameOverState extends GameState {
     }
 }
 
-
+let game = new Game()
+game.changeState(new StartState)
 
 
 
