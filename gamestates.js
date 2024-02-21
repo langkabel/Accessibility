@@ -33,6 +33,9 @@ class GameState {
 // definition on gamestates and their specific function
 // specific gamestates alsway open ond close their overlay on enter and exit
 // buttons get declared on enter and deleted on exit to prevent bugs and cheating
+
+
+
 class StartState extends GameState {
     enter() {
         startScreenDOM.open()
@@ -89,7 +92,9 @@ class CountdownState extends GameState {
 //Play State
 //Helper Functions
 
-
+let handicapTimerSave = 0
+let remainingTime = 0
+let handicapWasIntroduced = true
 
 class PlayState extends GameState {
     enter() {
@@ -99,14 +104,30 @@ class PlayState extends GameState {
 
         playScreenDOM.open()
 
-        handicapbarDOM.style.width = '0%'
-        setInterval(() => {
-            let progress = (100 / (handicapInterval - 1)) * (Math.round(handicapTimer.getTime() / 1000))
-            handicapbarDOM.style.width = progress + '%'
+        
+        handicapbarDOM.style.width = (100 / (handicapInterval - 1)) * (remainingTime) + '%'
+
+        handicapTimer.start()
+
+        let handicapIntervalFunction = setInterval(() => {
+            let timeInSeconds = Math.round(handicapTimer.getTime() / 1000);
+            if (handicapWasIntroduced = true) {
+                remainingTime = handicapInterval 
+            }             
+            
+            if (remainingTime - timeInSeconds <= 0 ) {  
+                handicapWasIntroduced = true             
+                handicapTimer.stop()
+                clearInterval(handicapIntervalFunction)
+                game.changeState(new HandicapState())   
+            } else {
+                handicapWasIntroduced = false
+                console.log("test")
+                let progress = (100 / (handicapInterval - 1)) * (Math.round(handicapTimer.getTime() / 1000))
+                handicapbarDOM.style.width = progress + '%'
+            }    
         }, 500) 
 
-        handicapTimer.reset()
-        handicapTimer.startCountdown(handicapInterval, () => {}, () => game.changeState(new HandicapState))
         commandTimer.startCountdown(commandCountdown, () => {}, () => game.changeState(new GameOverState))
     }
 
@@ -115,6 +136,9 @@ class PlayState extends GameState {
     }
 
     exit() {
+        handicapTimerSave = remainingTime
+        
+
         playScreenDOM.close()
 
         commandTimer.stop()
