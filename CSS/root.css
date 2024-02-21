@@ -1,0 +1,43 @@
+:root {
+    --primary-color: white;
+    --secondary-color: Black;
+}
+
+h0 {
+    color: var(--secondary-color);
+    font-size: 12px;
+}
+
+h1 {
+    color: var(--secondary-color);
+    font-size: 12px;
+}
+
+h2 {
+    color: var(--secondary-color);
+    font-size: 12px;
+}
+
+h3 {
+    color: var(--secondary-color);
+    font-size: 12px;
+}
+
+p {
+    color: var(--secondary-color);
+    font-size: 12px;
+}
+
+button {
+    background-color: var(--primary-color) ;
+    color: var(--secondary-color);
+    border-color: var(--secondary-color);
+    padding: 2px;   
+}
+
+button:hover {
+    color: var(--secondary-color);
+    border-color: var(--secondary-color);
+    padding: 2px;   
+}
+

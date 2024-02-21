@@ -70,36 +70,73 @@ class Upgrade {
 }
 
 const biggerButtons = new Upgrade(
-    "Bigger Buttons",
-    "Make Buttons Bigger",
+    "Buttons: Minimal Size",
+    "Buttons should have a size that makes them easy to click or tap, especially for users with mobility impairments or those using touchscreens. A general rule of thumb is to make buttons at least 44x44 pixels in size.",
     `
     button {
-        width: 100px;
-        height: 50px;
-    }`
-)
-
-const riggerButtons = new Upgrade(
-    "rigger Buttons",
-    "Make Buttons Bigger",
+        height: 44px;
+        min-width: 44px;
+    }
     `
-    button {
-        width: 100px;
-        height: 50px;
-    }`
 )
 
-const miggerButtons = new Upgrade(
-    "migger Buttons",
-    "Make Buttons Bigger",
+const visibleHover = new Upgrade(
+    "Buttons: Visible Hover",
+    " If the button's appearance changes on hover (e.g., color, border, background), ensure that there is enough contrast between the original state and the hover state. This is important for users with low vision or color blindness who may have difficulty distinguishing between colors with low contrast.",
     `
-    button {
-        width: 100px;
-        height: 50px;
-    }`
+    button:hover {
+        color: var(--primary-color);
+        border-color: var(--primary-color);
+        background-color: var(--secondary-color);
+        border-radius: 5px;
+        padding: 2px;
+    }
+    `
 )
 
-let allUpgrades = [biggerButtons, riggerButtons, miggerButtons]
+const darkMode = new Upgrade(
+    "Dark Mode",
+    ">:D",
+    `
+    :root {
+        --primary-color: black;
+        --secondary-color: white;
+    }
+    `
+)
+
+const headingStructure = new Upgrade(
+    "Text: Heading Structure",
+    "Use visual styling (e.g., font size, weight, color) to differentiate headings from body text and provide visual hierarchy.",
+    `
+    h0 {
+        color: var(--secondary-color);
+        font-size: 48px;
+    }
+    
+    h1 {
+        color: var(--secondary-color);
+        font-size: 36px;
+    }
+    
+    h2 {
+        color: var(--secondary-color);
+        font-size: 28px;
+    }
+    
+    h3 {
+        color: var(--secondary-color);
+        font-size: 20px;
+    }
+    
+    p {
+        color: var(--secondary-color);
+        font-size: 16px;
+    }
+    `
+)
+
+let allUpgrades = [biggerButtons, visibleHover, darkMode, headingStructure]
 
 //functions called in gamestates
 function showRandomUpgrades() {

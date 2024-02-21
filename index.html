@@ -5,8 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AccessibilityGame</title>
 
+    <link rel="stylesheet" type="text/css" href="CSS/root.css">
     <link rel="stylesheet" type="text/css" href="CSS/handicaps.css">
     <link rel="stylesheet" type="text/css" href="CSS/style.css">
+    
 </head>
 <body>
     <div id="handicap-container"></div>
@@ -15,8 +17,10 @@
             <h1>
                 AccessibilityGame
             </h1>
-            <p>
-                Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...
+            <p> 
+                Get ready to roll into a world where accessibility challenges take center stage! In this exciting twist on the classic Bobit game, you'll dive headfirst into the dynamic realm of accessibility awareness.
+                
+                Together, let's roll towards a world where everyone has equal access and opportunity.
             </p>
             <button id="start-button" class="button" type="button">Start</button>
         </div>
@@ -28,10 +32,18 @@
                 Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...
             </p>
             <div id="score-container">
-                <p>Score: <span id="end-score">0</span></p>
+                <p>Score: 
+                    <span id="end-score">
+                        0
+                    </span>
+                </p>
             </div>
             <div id="highscore-container">
-                <p>Highscore: <span id="highscore">0</span></p>
+                <p>Highscore:
+                    <span id="highscore">
+                        0
+                    </span>
+                </p>
             </div>
             <button id="restart-button" class="button" type="button">
                 Start
@@ -53,9 +65,7 @@
             <h1>
                 Upgrade Overlay
             </h1>
-            <div id="upgrade-container">
-
-            </div>
+            <div id="upgrade-container"></div>
         </div>
     </div>
     <div id="countdown-screen" class="not-displayed overlay">
@@ -86,7 +96,6 @@
     <script src="init.js"></script>
     <script src="interactions.js"></script>
     <script src="gamestates.js"></script>
-    
     <script src="texttospeach.js"></script>
     <script src="handicaps.js"></script>
     <script src="upgrades.js"></script>

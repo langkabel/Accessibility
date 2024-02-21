@@ -73,8 +73,8 @@ class SettingsState extends GameState {
 class CountdownState extends GameState {
     enter() {
         countdownScreenDOM.open()
+        countdownDOM.innerText = `3`
         countdownTimer.startCountdown(3, () => countdownDOM.innerText = countdownTimer.remainingTime, () => game.changeState(new PlayState()))
-        
     }
 
     update() {
@@ -99,6 +99,13 @@ class PlayState extends GameState {
 
         playScreenDOM.open()
 
+        handicapbarDOM.style.width = '0%'
+        setInterval(() => {
+            let progress = (100 / (handicapInterval - 1)) * (Math.round(handicapTimer.getTime() / 1000))
+            handicapbarDOM.style.width = progress + '%'
+        }, 500) 
+
+        handicapTimer.reset()
         handicapTimer.startCountdown(handicapInterval, () => {}, () => game.changeState(new HandicapState))
         commandTimer.startCountdown(commandCountdown, () => {}, () => game.changeState(new GameOverState))
     }
@@ -114,7 +121,7 @@ class PlayState extends GameState {
         commandTimer.reset()
 
         handicapTimer.stop()
-        handicapTimer.reset()
+  
     }
 }
  
@@ -127,7 +134,7 @@ class HandicapState extends GameState {
 
         // stop and reset Timers
         handicapTimer.stop()
-        handicapTimer.reset()
+        
         
         commandTimer.stop()
         commandTimer.reset()
@@ -153,7 +160,7 @@ class UpgradeState extends GameState {
         console.log("Upgrade Screen")
 
         handicapTimer.stop()
-        handicapTimer.reset()
+        
         
         commandTimer.stop()
         commandTimer.reset()
@@ -198,6 +205,8 @@ class GameOverState extends GameState {
 
         score = 0
         scoreDOM.innerText = score
+
+        upgradebarDOM.style.width = '0%'
     }
 }
 

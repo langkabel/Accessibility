@@ -51,10 +51,9 @@ class Timer {
         }
         return this.overallTime;
     }
-
+    
     startCountdown(timeInSeconds,onUpdate, onFinish) {
         this.remainingTime = timeInSeconds
-        this.reset()
         this.start()
         this.intervalFunction = setInterval(() => {            
             this.remainingTime = timeInSeconds - Math.round(this._getTimeElapsedSinceLastStart() / 1000)        
