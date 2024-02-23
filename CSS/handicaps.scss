@@ -1,14 +1,9 @@
 //circle cursor
-#handicap-container {
-    position: absolute;
-    width: 100vw;
-    height: 100vh;
-    pointer-events: none;
-}
+
 
 #macular-degeneration {
     position: absolute;
-    z-index: 100;
+    z-index: 11;
     width: 200px;
     height: 200px;
     background: radial-gradient(circle, rgba(0,0,0,1) 0%, rgba(18,18,18,1) 11%,rgba(0,0,0,.1) 70%, rgba(0,0,0,0) 99%);   
@@ -19,7 +14,7 @@
 
 #blurry-vision {
     position: absolute;
-    z-index: 110;
+    z-index: 12;
     width: 100%;
     height: 100%;
     top: 0px;

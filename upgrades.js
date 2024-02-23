@@ -23,8 +23,7 @@ class Upgrade {
 
         this.upgradeButtonDOM.onclick = () => {
             this.removeFromScreen()
-            this.implement()
-            
+            this.implement()   
         }
    
         this.head = document.head || document.getElementsByTagName('head')[0]
@@ -48,24 +47,21 @@ class Upgrade {
         this.style.type = 'text/css';
         this.style.appendChild(document.createTextNode(this.css))
 
-        implementedUpgrades.push(this)
+        this.firstIndex = upgradesToShow.findIndex((element) => element.name === this.name)
 
-        this.firstIndex = allUpgrades.findIndex((element) => element.name === this.name)
-
-        allUpgrades.splice(this.firstIndex, 1)
         upgradesToShow.splice(this.firstIndex, 1)
-
         upgradesToShow.forEach((element) => {
             allUpgrades.push(element)
         })
 
+        implementedUpgrades.push(this)
+   
         game.changeState(new CountdownState)    
     }
 
     undoImplementation() {
-        if (this.head && this.style.parentNode === this.head) {
-            this.head.removeChild(this.style)
-        }
+        this.style.parentNode.removeChild(this.style)
+        allUpgrades.push(this)
     }
 }
 
@@ -157,5 +153,12 @@ function removeUpgradesFromScreen () {
         upgradeObject.removeFromScreen()
     })
     upgradesToShow = []
+}
+
+function undoImplementationOfUpgrade () {
+    implementedUpgrades.forEach((element) => {
+        element.undoImplementation()       
+    }) 
+    implementedUpgrades = []
 }
 

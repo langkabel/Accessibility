@@ -1,6 +1,6 @@
 // variables to balance game
 let handicapInterval = 10
-let commandCountdown = 3
+let commandCountdown = 6
 let upgradeThreshold = 3
 let numberOfInteractionElementsAtBeginning = 3
 const numberOfUpgradesToChooseFrom = 3
@@ -94,6 +94,7 @@ function updateScore(onUpgrade) {
 function getLastObjectOfArray(array) {
     return array[array.length - 1]
 }
+
 
 
 

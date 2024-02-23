@@ -99,27 +99,21 @@ let handicapWasIntroduced = true
 class PlayState extends GameState {
     enter() {
         generateInteractionCommand()
-
         endScoreDOM.innerText = score
-
-        playScreenDOM.open()
-
-        
         handicapbarDOM.style.width = (100 / (handicapInterval - 1)) * (remainingTime) + '%'
-
+        playScreenDOM.open()
         handicapTimer.start()
 
         let handicapIntervalFunction = setInterval(() => {
             let timeInSeconds = Math.round(handicapTimer.getTime() / 1000);
-            if (handicapWasIntroduced = true) {
-                remainingTime = handicapInterval 
+            if (handicapWasIntroduced = true) {                 
+                remainingTime = handicapInterval    
             }             
             
-            if (remainingTime - timeInSeconds <= 0 ) {  
-                handicapWasIntroduced = true             
-                handicapTimer.stop()
+            if (remainingTime - timeInSeconds <= 0 ) { 
                 clearInterval(handicapIntervalFunction)
-                game.changeState(new HandicapState())   
+                handicapWasIntroduced = true             
+                game.changeState(new HandicapState())
             } else {
                 handicapWasIntroduced = false
                 console.log("test")
@@ -135,17 +129,13 @@ class PlayState extends GameState {
 
     }
 
-    exit() {
-        handicapTimerSave = remainingTime
-        
-
+    exit() {     
         playScreenDOM.close()
 
         commandTimer.stop()
         commandTimer.reset()
 
-        handicapTimer.stop()
-  
+        handicapTimer.stop()  
     }
 }
  
@@ -158,12 +148,10 @@ class HandicapState extends GameState {
 
         // stop and reset Timers
         handicapTimer.stop()
-        
-        
+        handicapTimer.reset()
+             
         commandTimer.stop()
         commandTimer.reset()
-
-
 
         let continueFromHandicapButtonDOM = document.getElementById("handicap-continue-button")
         continueFromHandicapButtonDOM.onclick = function() {game.changeState(new CountdownState)}
@@ -180,6 +168,8 @@ class HandicapState extends GameState {
 
 class UpgradeState extends GameState {
     enter() {
+        console.log({allUpgrades})
+        
         upgradeScreenDOM.open()
         console.log("Upgrade Screen")
 
@@ -190,7 +180,8 @@ class UpgradeState extends GameState {
         commandTimer.reset()
 
         showRandomUpgrades()
-        
+        console.log({upgradesToShow})
+        console.log({allUpgrades})
     }
 
     update() {
@@ -198,8 +189,13 @@ class UpgradeState extends GameState {
     }
 
     exit() {
+        
+        console.log({upgradesToShow})
+        
         upgradeScreenDOM.close()
         removeUpgradesFromScreen()
+        console.log({implementedUpgrades})
+        
     }
 }
 
@@ -225,7 +221,9 @@ class GameOverState extends GameState {
 
     exit() {
         removeAllHandicaps()
+        undoImplementationOfUpgrade()
         gameOverScreenDOM.close()
+        
 
         score = 0
         scoreDOM.innerText = score
