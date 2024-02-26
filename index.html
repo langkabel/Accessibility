@@ -13,7 +13,7 @@
 <body>
     <div id="handicap-container"></div>
     <div id="start-screen" class="overlay not-displayed">
-        <div class="overlay-content-container">
+        <div class="middle-container">
             <h0>
                 Click It!
             </h0>
@@ -31,7 +31,7 @@
             <p>
                 Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...
             </p>
-            <div id="score-container">
+            <div id="bottom-container">
                 <p>Score: 
                     <span id="end-score">
                         0
@@ -46,7 +46,7 @@
                 </p>
             </div>
             <button id="restart-button" class="button" type="button">
-                Start
+                Restart
             </button>
 
         </div>
@@ -61,11 +61,19 @@
         </div>
     </div>
     <div id="upgrade-screen" class="not-displayed overlay">
-        <div class="overlay-content-container">
-            <h1>
-                Upgrade Overlay
-            </h1>
+        <div id="top-container">
+            <div class="top-text-container">
+                <h3 >
+                    Choose an Upgrade
+                </h3>
+            </div>
+        </div>
+        
+        <div class="middle-container">
             <div id="upgrade-container"></div>
+        </div>
+        <div id="bottom-container">
+            <div class="bottom-text-container"></div>
         </div>
     </div>
     <div id="countdown-screen" class="not-displayed overlay">
@@ -75,17 +83,24 @@
             </h0>
         </div>
     </div>
+
     <div id="play-screen" class="not-displayed overlay">
         <div id="top-container">
             <div id="handicap-timer-container">
                 <div id="progressbar"></div>
             </div>
-            <h3><span id="command">0</span></h3>
+            <div class="top-text-container">
+                <h3 >
+                    <span id="command">0</span>
+                </h3>
+            </div>
+            
         </div>  
-        <div id="button-container">
-        </div>
-        <div id="score-container">
-            <p>Score: <span id="score">0</span></p>
+        <div class="middle-container" id="button-container"></div>
+        <div id="bottom-container">
+            <div class="bottom-text-container">
+                <p>Score: <strong><span id="score">0</span></strong></p>
+            </div>
             <div id="upgrade-progress-container">
                 <div id="upgradebar"></div>
             </div>

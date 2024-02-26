@@ -19,8 +19,7 @@ class Upgrade {
 
         this.upgradeButtonDOM = document.createElement("button")
         this.upgradeButtonDOM.classList.add("upgrade-button")
-        this.upgradeButtonDOM.innerHTML = "Choose"
-
+        
         this.upgradeButtonDOM.onclick = () => {
             this.removeFromScreen()
             this.implement()   
@@ -31,14 +30,14 @@ class Upgrade {
     }
 
     addToScreen() {
-        this.upgradeDOM.appendChild(this.headlineNameDOM)
-        this.upgradeDOM.appendChild(this.paragraphDescriptionDOM)
-        this.upgradeDOM.appendChild(this.upgradeButtonDOM)
-        this.upgradeContainerDOM.appendChild(this.upgradeDOM)       
+        this.upgradeButtonDOM.appendChild(this.headlineNameDOM)
+        this.upgradeButtonDOM.appendChild(this.paragraphDescriptionDOM)
+        
+        this.upgradeContainerDOM.appendChild(this.upgradeButtonDOM)       
     }
 
     removeFromScreen() {
-        this.upgradeDOM.remove()
+        this.upgradeButtonDOM.remove()
         console.log("removed")
     }
 
