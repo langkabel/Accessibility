@@ -13,6 +13,9 @@
 <body>
     <div id="handicap-container"></div>
     <div id="start-screen" class="overlay not-displayed">
+        <div id="top-container">
+
+        </div>
         <div class="middle-container">
             <h0>
                 Click It!
@@ -22,41 +25,63 @@
                 
                 Together, let's roll towards a world where everyone has equal access and opportunity.
             </p>
-            <button id="start-button" class="button" type="button">Start</button>
+            <div id="start-button-container">
+                <button id="start-button" class="button" type="button"><h3>Start</h3></button>
+            </div>
+            
+            
+        </div>
+        <div id="bottom-container">
+
         </div>
     </div>
     <div id="game-over-screen" class="not-displayed overlay">
         <div class="overlay-content-container">
-            <h1>Game Over</h1>
-            <p>
-                Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...
-            </p>
-            <div id="bottom-container">
+            <div id="top-container">
+                <div class="top-text-container">
+                    <h2>Game Over</h2>
+                </div>
+            </div>
+            
+            
+            <div class="middle-container">
+                <p>
+                    
+                </p>
                 <p>Score: 
-                    <span id="end-score">
+                    <strong><span id="end-score">
                         0
-                    </span>
+                    </span></strong>
                 </p>
-            </div>
-            <div id="highscore-container">
                 <p>Highscore:
-                    <span id="highscore">
+                    <strong><span id="highscore">
                         0
-                    </span>
+                    </span></strong>
                 </p>
             </div>
-            <button id="restart-button" class="button" type="button">
-                Restart
-            </button>
-
+            
+            <div id="bottom-container">
+                <button id="restart-button" class="button" type="button">
+                    <h3>Restart</h3>
+                </button>
+            </div>
         </div>
     </div>
     <div id="handicap-screen" class="not-displayed overlay">
-        <div class="overlay-content-container">
+        <div id="top-container">
+            <h3>New Handicap:</h3>
+            
+            
+            
+        </div>
+        <div class="middle-container">
             <h3><span id="handicap-name">text</span></h3>
             <p><span id="handicap-description">text</span></p>
+            
+        </div>
+        <div id="bottom-container">
             <button id="handicap-continue-button" class="button" type="button">
-                Start
+                <h3>Continue</h3>
             </button>
         </div>
     </div>
@@ -107,6 +132,11 @@
         </div>
     </div>
     
+    <script
+			  src="https://code.jquery.com/jquery-2.2.4.min.js"
+			  integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+			  crossorigin="anonymous">
+    </script>
     <script src="timer.js"></script>  
     <script src="init.js"></script>
     <script src="interactions.js"></script>
@@ -114,8 +144,6 @@
     <script src="texttospeach.js"></script>
     <script src="handicaps.js"></script>
     <script src="upgrades.js"></script>
-    
-    
     <script src="main.js"></script>
 </body>
 </html>

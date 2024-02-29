@@ -1,7 +1,7 @@
 // variables to balance game
 let handicapInterval = 10
-let commandCountdown = 6
-let upgradeThreshold = 3
+let commandCountdown = 5
+let upgradeThreshold = 5
 let numberOfInteractionElementsAtBeginning = 3
 const numberOfUpgradesToChooseFrom = 3
 
@@ -76,7 +76,7 @@ let handicapbarDOM = document.getElementById("progressbar")
 // helper functions
 function updateScore(onUpgrade) {
     score = score + 1;
-    console.log({score})
+    console.log(`score: ${score}`)
     scoreDOM.innerText = score
 
     let progress = (100 / (upgradeThreshold - 1)) * (score % upgradeThreshold)

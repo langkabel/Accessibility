@@ -95,12 +95,13 @@ class CountdownState extends GameState {
 let handicapTimerSave = 0
 let remainingTime = 0
 let handicapWasIntroduced = true
+handicapbarDOM.style.width = (100 / (handicapInterval - 1)) * (remainingTime) + '%'
 
 class PlayState extends GameState {
     enter() {
         generateInteractionCommand()
         endScoreDOM.innerText = score
-        handicapbarDOM.style.width = (100 / (handicapInterval - 1)) * (remainingTime) + '%'
+        
         playScreenDOM.open()
         handicapTimer.start()
 
@@ -116,7 +117,6 @@ class PlayState extends GameState {
                 game.changeState(new HandicapState())
             } else {
                 handicapWasIntroduced = false
-                console.log("test")
                 let progress = (100 / (handicapInterval - 1)) * (Math.round(handicapTimer.getTime() / 1000))
                 handicapbarDOM.style.width = progress + '%'
             }    
@@ -180,22 +180,16 @@ class UpgradeState extends GameState {
         commandTimer.reset()
 
         showRandomUpgrades()
-        console.log({upgradesToShow})
-        console.log({allUpgrades})
     }
 
     update() {
         //logic when updated
     }
 
-    exit() {
-        
+    exit() {       
         console.log({upgradesToShow})
-        
         upgradeScreenDOM.close()
-        removeUpgradesFromScreen()
-        console.log({implementedUpgrades})
-        
+        removeUpgradesFromScreen()      
     }
 }
 
@@ -224,7 +218,6 @@ class GameOverState extends GameState {
         undoImplementationOfUpgrade()
         gameOverScreenDOM.close()
         
-
         score = 0
         scoreDOM.innerText = score
 

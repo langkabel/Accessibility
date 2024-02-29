@@ -75,7 +75,7 @@ class Button extends InteractionElement{
 
     this.buttonDOM = document.createElement("button")
     this.buttonDOM.class = "button"
-    this.buttonDOM.innerHTML = `${this.identification}`
+    this.buttonDOM.innerHTML = `<h3>${this.identification}</h3>`
 
     this.buttonDOM.onclick = () => {
       this.numberOfPresses = this.numberOfPresses + 1
@@ -101,13 +101,9 @@ class Button extends InteractionElement{
 
   checkCommand () {
     
-    console.log(`${this.identification}`)
-    console.log(`${commandInteractionID}`)
     if (this.identification === commandInteractionID) {
       updateScore(() => {game.changeState(new UpgradeState())})
-      console.log("checked")
-      console.log("checked")
-      console.log("checked")
+      console.log("command accepted")
 
       // if (this.numberOfPresses === this.targetForCommand) {
       //   console.log("score added")
@@ -160,5 +156,23 @@ function generateInteractionCommand() {
   let indexOfCommandToGenerate = Math.floor(Math.random() * implementedInteractionElements.length)
   implementedInteractionElements[indexOfCommandToGenerate].generateCommand()
   commandDOM.innerText = commandToDisplay
+  
+  if (alzheimerBool === true) {
+      console.log(alzheimerBool)
+      
+      var opacity = 1;
+      var intervalTime = 10 // Interval time in milliseconds
+      var decreaseStep = intervalTime / 300; // Step to decrease opacity
+  
+      var fadeInterval = setInterval(function () {
+          opacity -= decreaseStep;
+          if (opacity <= 0) {
+              clearInterval(fadeInterval);
+              commandDOM.style.opacity = 0;
+          } else {
+              commandDOM.style.opacity = opacity;
+          }
+      }, intervalTime);
+  }
 }
 
